@@ -1,0 +1,4 @@
+Only thing that changes is that...
+
+    * Double equal sign (==) will check if two things are equal
+    * Triple equal sign (===) will check if two things are equal and the same data type
