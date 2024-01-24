@@ -1,0 +1,11 @@
+jQuery is a JavaScript Library
+
+Instead of writing jQuery before every piece of code you can just write $
+
+Example:
+    document.querySelector("h1")
+
+    ...turns into vvv...
+
+    $("h1")
+

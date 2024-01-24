@@ -1,0 +1,3 @@
+https://jquery.com
+
+*** Use the 3.x snippet in the google CDN ***
