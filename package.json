@@ -1,0 +1,18 @@
+{
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "qr-image": "^3.2.0"
+  },
+  "name": "the-complete-2023-web-development-bootcamp",
+  "version": "1.0.0",
+  "main": "Section 23) Node.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Enzo Mediano",
+  "license": "ISC",
+  "description": "Web Development Bootcamp"
+}
