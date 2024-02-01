@@ -5,7 +5,6 @@
 import express from 'express';
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import bodyParser from "body-parser";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -21,7 +20,7 @@ function checkPassword(req, res, next) {
   next();
 }
 
-app.use(bodyParser.urlencoded( {extended : true } ));
+app.use(express.urlencoded( {extended : true } ));
 
 app.use(checkPassword);
 
@@ -33,7 +32,7 @@ app.post("/check", (req, res) => {
   if (userIsAuthorized) {
     res.sendFile(__dirname + "/public/secret.html");
   } else {
-    res.sendFile(__dirname + "/public/index.html");
+    res.redirect("/");
   }
 });
 
