@@ -1,0 +1,15 @@
+<%- include("./partials/header.ejs") %>
+<div class = "container-lg">
+  <form class="blog-form" action="/submit" method="POST">
+    <div class="mb-3">
+      <label for="Title-Area" >Blog Title</label>
+      <input type="text" class="form-control" id="Title-Area" placeholder="Title" name="title">
+    </div>
+    <div class="mb-3">
+      <label for="Text-Area" class="form-label">Blog Content</label>
+      <textarea class="form-control" id="Text-Area" rows="15" name="text"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" class="blu-button">Submit</button>
+  </form>
+</div>
+<%- include("./partials/footer.ejs") %>

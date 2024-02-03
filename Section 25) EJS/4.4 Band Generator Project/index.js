@@ -4,7 +4,10 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 
+let year = 0;
+
 //Step 3 - Make the styling show up.
+app.use(express.static("public"));
 //Hint 1: CSS files are static files!
 //Hint 2: The header and footer are partials.
 //Hint 3: Add the CSS link in header.ejs
@@ -14,8 +17,18 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+function getYear() {
+  year = new Date().getFullYear();
+  return year;
+}
+
 app.get("/", (req, res) => {
   //Step 1 - Make the get route work and render the index.ejs file.
+  year = getYear();
+  let data = {
+    year : year,
+  }
+  res.render("index.ejs", data);
 });
 
 app.post("/submit", (req, res) => {
@@ -26,6 +39,17 @@ app.post("/submit", (req, res) => {
   //scroll down to see the two arrays.
   //2. Send the index.ejs as a response and add the adjective and noun to the res.render
   //3. Test to make sure that the random words display in the h1 element in index.ejs
+
+  let randAdj = adj[Math.floor(Math.random() * adj.length)];
+  let randNoun = noun[Math.floor(Math.random() * noun.length)];
+  year = getYear();
+  let bandName = randAdj + " " + randNoun;
+  let data = {
+    bandName : bandName,
+    year : year,
+  } 
+  /* console.log(bandName); */
+  res.render("index.ejs", data);
 });
 
 app.listen(port, () => {

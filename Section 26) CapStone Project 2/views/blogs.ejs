@@ -1,0 +1,14 @@
+<%- include("./partials/header.ejs") %>
+<div class="blog-posts">
+  <% for (var i = 0; i < listTitle.length; i++){ %>
+    <div class="post">
+      <h1 class="blog-title"><%= listTitle[i] %></h1>
+      <h4><%= listDescription[i]%></h4>
+    </div>
+    <div class="line"></div>
+  <% } %>
+  <form class="form-button" action="/form" method="get">
+    <input type="submit" value="Create Blog Post!">
+  </form>
+</div>
+<%- include("./partials/footer.ejs") %>

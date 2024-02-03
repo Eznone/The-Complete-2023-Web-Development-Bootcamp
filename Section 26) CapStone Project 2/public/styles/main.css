@@ -1,0 +1,75 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.blog-form {
+  margin-top: 15rem;
+}
+
+.blog-posts {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.blog-title {
+  font-family: "Trirong", serif;
+}
+
+.post {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+nav {
+  background-image: linear-gradient(to right, transparent, #ee50d1);
+  background-color: #6198e0;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+  display: inline-block;
+}
+
+.line {
+  height: 3px;
+  background-image: linear-gradient(to right, transparent, #ee50d1);
+  background-color: #6198e0;
+}
+
+.blu-button {
+  background-color: #6198e0;
+}
+
+.form-button {
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 950px) {
+  .logo {
+    margin-right: 0;
+  }
+
+}
+
+.logo {
+  margin-right: 500px;
+  border-radius: 50px;
+}
