@@ -29,14 +29,33 @@ async function checkVisisted() {
 }
 
 async function addCountry(country) {
-  const newCountry = await db.query("SELECT * FROM countries WHERE country_code='" + country.toUpperCase() + "'" );
-  if (newCountry.rows.length !== 0) {
+  try {
+    const newCountry = await db.query("SELECT * FROM countries WHERE LOWER(country_code) LIKE '%' || $1 || '%';", [country.toLowerCase()]);
     const countryCode = newCountry.rows[0]["country_code"];
-    console.log(countryCode);
-    await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [countryCode]);
+    console.log("Country to be registered: " + countryCode);
+    try {
+      await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [countryCode]);
+    } catch(error) {
+      console.log(error.detial);
+      let visited_countries = await checkVisisted();
+      let data = {
+        countries: visited_countries,
+        total: visited_countries.length,
+        error: "Country already registered, please try again.", 
+      }
+      return(data);
+    }
+  } catch(error) {
+    console.log(error.detial);
+    let visited_countries = await checkVisisted();
+    let data = {
+      countries: visited_countries,
+      total: visited_countries.length,
+      error: "Country name does not exist, please try again.", 
+    }
+    return(data);
   }
 }
-
 
 app.get("/", async (req, res) => {
   let visited_countries = await checkVisisted();
@@ -48,9 +67,14 @@ app.get("/", async (req, res) => {
   res.render("./index.ejs", data);
 });
 
-app.post("/add", (req, res) => {
-  addCountry(req.body.country);
-  res.redirect("/");
+app.post("/add", async (req, res) => {
+  let data = await addCountry(req.body.country);
+  if (data?.error !== undefined) {
+    console.log(data);
+    res.render("./index.ejs", data);
+  } else {
+    res.redirect("/");
+  }
 });
 
 
