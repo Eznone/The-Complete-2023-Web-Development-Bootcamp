@@ -30,9 +30,10 @@ async function checkVisisted() {
 
 async function addCountry(country) {
   try {
-    const newCountry = await db.query("SELECT * FROM countries WHERE LOWER(country_code) LIKE '%' || $1 || '%';", [country.toLowerCase()]);
+    const newCountry = await db.query("SELECT * FROM countries WHERE LOWER(country_name) LIKE '%' || $1 || '%';", [country.toLowerCase()]);
     const countryCode = newCountry.rows[0]["country_code"];
-    console.log("Country to be registered: " + countryCode);
+    const countryName = newCountry.rows[0]["country_name"]
+    console.log("Country to be registered: " + countryName);
     try {
       await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [countryCode]);
     } catch(error) {
